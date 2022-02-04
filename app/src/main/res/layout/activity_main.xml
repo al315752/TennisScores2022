@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#03b674"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/setsA"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="___"
+        app:layout_constraintBaseline_toBaselineOf="@+id/scoreA"
+        app:layout_constraintStart_toEndOf="@+id/scoreA" />
+
+    <TextView
+        android:id="@+id/setsB"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="___"
+        app:layout_constraintBaseline_toBaselineOf="@+id/scoreB"
+        app:layout_constraintStart_toEndOf="@+id/scoreB" />
+
+    <TextView
+        android:id="@+id/scoreB"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/scoreA"
+        app:layout_constraintStart_toStartOf="@+id/scoreA"
+        app:layout_constraintTop_toBottomOf="@+id/scoreA" />
+
+    <TextView
+        android:id="@+id/gamesA"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/gamesB"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/gamesA"
+        app:layout_constraintStart_toStartOf="@+id/gamesA"
+        app:layout_constraintTop_toBottomOf="@+id/gamesA" />
+
+    <TextView
+        android:id="@+id/pointsA"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="00"
+        app:layout_constraintBaseline_toBaselineOf="@+id/gamesA"
+        app:layout_constraintStart_toEndOf="@+id/gamesA" />
+
+    <TextView
+        android:id="@+id/pointsB"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="00"
+        app:layout_constraintBaseline_toBaselineOf="@+id/gamesB"
+        app:layout_constraintStart_toEndOf="@+id/gamesB" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="SCORE"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SETS"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/setsA"
+        app:layout_constraintStart_toStartOf="@+id/setsA" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POINTS"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/pointsA"
+        app:layout_constraintStart_toStartOf="@+id/pointsA" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="GAMES"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/scoreB"
+        app:layout_constraintStart_toStartOf="@+id/scoreB"
+        app:layout_constraintTop_toBottomOf="@+id/scoreB" />
+
+    <TextView
+        android:id="@+id/scoreA"
+        style="@style/TextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/buttonA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#057E73"
+        android:onClick="pointAPressed"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="point a"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pointsA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pointsA"
+        app:layout_constraintTop_toTopOf="@+id/pointsA" />
+
+    <Button
+        android:id="@+id/buttonB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#057E73"
+        android:onClick="pointBPressed"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="point b"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pointsB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pointsB"
+        app:layout_constraintTop_toTopOf="@+id/pointsB" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#057E73"
+        android:onClick="resetButtonPressed"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Reset"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/maxSets"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/maxSets"
+        app:layout_constraintTop_toTopOf="@+id/maxSets" />
+
+    <RadioGroup
+        android:id="@+id/maxSets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/pointsB"
+        app:layout_constraintStart_toStartOf="@+id/gamesB">
+
+        <RadioButton
+            android:id="@+id/threeSets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="3" />
+
+        <RadioButton
+            android:id="@+id/fiveSets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
