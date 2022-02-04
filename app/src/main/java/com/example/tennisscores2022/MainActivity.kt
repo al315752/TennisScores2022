@@ -79,4 +79,5 @@ class MainActivity : AppCompatActivity() {
     fun resetButtonPressed(view: View){
         presenter.onResetRequested()
     }
+
 }
