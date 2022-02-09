@@ -3,80 +3,60 @@ package com.example.tennisscores2022
 import com.example.tennisscores2022.model.Model
 import es.uji.jvilar.tennisscores.ScoreType
 
-class Presenter(val view : MainActivity) {
-    val model : Model = Model()
-    var setsA : String = "___"
-    var setsB : String = "___"
-    var pointsA : String = "00"
-    var pointsB : String = "00"
-
+class Presenter(val view : MainActivity, val model : Model) {
     fun onAPointScore(){
         model.pointAScore()
-        getStringSetResults()
         updateView()
+        view.isMaxSetEnabled = false
     }
 
     fun onBPointScore() {
         model.pointBScore()
-        getStringSetResults()
         updateView()
+        view.isMaxSetEnabled = false
     }
 
     fun onResetRequested(){
         model.reset()
-        getStringSetResults()
         updateView()
-    }
-
-    private fun getStringSetResults(){
-        val setNumber : Int = if (view.fiveSets.isChecked) 5 else 3
-
-        setsA = ""
-        setsB = ""
-
-        for (item in model.playerA.setResults){
-            setsA += item.toString()
-            println("sets A -> $item")
-        }
-        while (setsA.length < setNumber){
-            setsA += "_"
-        }
-
-        for (item in model.playerB.setResults){
-            setsB += item.toString()
-            println("sets B -> $item")
-        }
-        while (setsB.length < setNumber){
-            setsB += "_"
-        }
-
-        if (model.playerA.setResults.size == setNumber || model.playerB.setResults.size == setNumber){
-            view.buttonA.isEnabled = false
-            view.buttonB.isEnabled = false
-        }
+        view.isMaxSetEnabled = true
     }
 
     private fun updateView(){
-        getPoints()
-        view.displayScores(model.playerA.sets.toString(), model.playerB.sets.toString())
-        view.displaySets(setsA, setsB)
-        view.displayGames(model.playerA.games.toString(), model.playerB.games.toString())
-        view.displayPoints(pointsA, pointsB)
+        view.displayScores(model.setsA.toString(), model.setsB.toString())
+        view.displaySetResults(setResultsToString(model.setResultsA), setResultsToString(model.setResultsB))
+        view.displayGames(model.gamesA.toString(), model.gamesB.toString())
+        view.displayPoints(pointsToString(model.pointsA, model.typeA), pointsToString(model.pointsB, model.typeB))
     }
 
-    private fun getPoints(){
-        pointsA = if (model.playerA.type == ScoreType.Normal){
-            if (model.playerA.points == 0) "00"
-            else model.playerA.points.toString()
-        } else if (model.playerA.type == ScoreType.Deuce) "40"
-        else if (model.playerA.type == ScoreType.Advantage) "Ad"
-        else "__"
+    private fun setResultsToString(setResults: List<Int>): String{
+        val setNumber : Int = if (view.fiveSets.isChecked) 5 else 3
+        var sets = ""
 
-        pointsB = if (model.playerB.type == ScoreType.Normal){
-            if (model.playerB.points == 0) "00"
-            else model.playerB.points.toString()
-        } else if (model.playerB.type == ScoreType.Deuce) "40"
-        else if (model.playerB.type == ScoreType.Advantage) "Ad"
+        for (item in setResults){
+            sets += item.toString()
+        }
+        while (sets.length < setNumber){
+            sets += "_"
+        }
+
+        if (model.isMatchEnded(setNumber)){
+            view.buttonA.isEnabled = false
+            view.buttonB.isEnabled = false
+        } else {
+            view.buttonA.isEnabled = true
+            view.buttonB.isEnabled = true
+        }
+
+        return sets
+    }
+
+    private fun pointsToString(points: Int, type: ScoreType): String{
+        return if (type == ScoreType.Normal){
+            if (points == 0) "00"
+            else points.toString()
+        } else if (type == ScoreType.Deuce) "40"
+        else if (type == ScoreType.Advantage) "Ad"
         else "__"
     }
 }

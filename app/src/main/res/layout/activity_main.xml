@@ -180,6 +180,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/maxSets"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/maxSets"
         app:layout_constraintTop_toTopOf="@+id/maxSets" />
 
@@ -191,19 +192,23 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/pointsB"
-        app:layout_constraintStart_toStartOf="@+id/gamesB">
+        app:layout_constraintEnd_toStartOf="@+id/resetButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/threeSets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:onClick="resetButtonPressed"
             android:text="3" />
 
         <RadioButton
             android:id="@+id/fiveSets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="resetButtonPressed"
             android:text="5" />
     </RadioGroup>
 

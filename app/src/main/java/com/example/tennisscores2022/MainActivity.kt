@@ -6,8 +6,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
+import com.example.tennisscores2022.model.Model
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Interface {
 
     lateinit var scoreA : TextView
     lateinit var scoreB : TextView
@@ -45,25 +46,32 @@ class MainActivity : AppCompatActivity() {
         threeSets = findViewById(R.id.threeSets)
         fiveSets = findViewById(R.id.fiveSets)
 
-        presenter = Presenter (this)
+        presenter = Presenter (this, Model())
     }
 
-    fun displayScores(playerA : String, playerB : String){
+    override var isMaxSetEnabled: Boolean
+        get() = threeSets.isEnabled && fiveSets.isEnabled
+        set(value) {
+            threeSets.isEnabled = value
+            fiveSets.isEnabled = value
+        }
+
+    override fun displayScores(playerA : String, playerB : String){
         scoreA.text = playerA
         scoreB.text = playerB
     }
 
-    fun displaySets(playerA: String, playerB: String){
+    override fun displaySetResults(playerA: String, playerB: String){
         setsA.text = playerA
         setsB.text = playerB
     }
 
-    fun displayGames(playerA: String, playerB: String){
+    override fun displayGames(playerA: String, playerB: String){
         gamesA.text = playerA
         gamesB.text = playerB
     }
 
-    fun displayPoints(playerA: String, playerB: String){
+    override fun displayPoints(playerA: String, playerB: String){
         pointsA.text = playerA
         pointsB.text = playerB
     }
@@ -79,5 +87,4 @@ class MainActivity : AppCompatActivity() {
     fun resetButtonPressed(view: View){
         presenter.onResetRequested()
     }
-
 }
