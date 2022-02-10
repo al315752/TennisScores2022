@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), Interface {
     lateinit var threeSets : RadioButton
     lateinit var fiveSets : RadioButton
 
+    lateinit var model : Model
     lateinit var presenter : Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +47,22 @@ class MainActivity : AppCompatActivity(), Interface {
         threeSets = findViewById(R.id.threeSets)
         fiveSets = findViewById(R.id.fiveSets)
 
-        presenter = Presenter (this, Model())
+        if (savedInstanceState != null){
+            model = savedInstanceState.getParcelable<Model>("MODEL")!!
+            fiveSets.isChecked = savedInstanceState.getBoolean("FIVE_SETS")
+        } else {
+            model = Model()
+        }
+        presenter = Presenter (this, model)
     }
 
-    override var isMaxSetEnabled: Boolean
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("MODEL", model)
+        outState.putBoolean("FIVE_SETS", fiveSets.isChecked)
+    }
+
+    override var isMaxSetsEnabled: Boolean
         get() = threeSets.isEnabled && fiveSets.isEnabled
         set(value) {
             threeSets.isEnabled = value

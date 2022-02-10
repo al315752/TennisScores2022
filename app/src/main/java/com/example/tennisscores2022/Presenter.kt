@@ -4,22 +4,23 @@ import com.example.tennisscores2022.model.Model
 import es.uji.jvilar.tennisscores.ScoreType
 
 class Presenter(val view : MainActivity, val model : Model) {
+    init {
+        updateView()
+    }
+
     fun onAPointScore(){
         model.pointAScore()
         updateView()
-        view.isMaxSetEnabled = false
     }
 
     fun onBPointScore() {
         model.pointBScore()
         updateView()
-        view.isMaxSetEnabled = false
     }
 
     fun onResetRequested(){
         model.reset()
         updateView()
-        view.isMaxSetEnabled = true
     }
 
     private fun updateView(){
@@ -27,6 +28,7 @@ class Presenter(val view : MainActivity, val model : Model) {
         view.displaySetResults(setResultsToString(model.setResultsA), setResultsToString(model.setResultsB))
         view.displayGames(model.gamesA.toString(), model.gamesB.toString())
         view.displayPoints(pointsToString(model.pointsA, model.typeA), pointsToString(model.pointsB, model.typeB))
+        view.isMaxSetsEnabled = model.atGameBeginning
     }
 
     private fun setResultsToString(setResults: List<Int>): String{
